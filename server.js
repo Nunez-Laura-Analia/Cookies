@@ -33,7 +33,7 @@ app.use(
   session({
     store: MongoStore.create({
       mongoUrl:
-        "mongodb+srv://franchas123:fran123@cluster0.zqkvn9v.mongodb.net/?retryWrites=true&w=majority",
+        "",
       mongoOptions: advancedOptions,
     }),
     secret: "secreto",
@@ -47,18 +47,14 @@ app.use((req, res, next) => {
   req.session.touch();
   next();
 });
-
 app.get("/", (req, res) => {
-  res.send("Bienvenido al Ejercicio");
+  res.send("Welcome");
 });
-
 app.use("/api/products-test", productRouter);
 app.use("/login", loginRouter);
 app.use("/home", homeRouter);
-
 app.get("/logout", (req, res) => {
   let username = req.session.username;
-
   req.session.destroy((err) => {
     if (err) {
       return res.json({ status: "Logout ERROR", body: err });

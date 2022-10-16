@@ -1,5 +1,4 @@
-
-import createNFakeProducts from "./productGenerator.js";
+import createFakeProducts from "./productGenerator.js";
 import createId from "./createId.js";
 
-export { createNFakeProducts, createId };
+export { createFakeProducts, createId };

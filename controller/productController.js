@@ -1,9 +1,9 @@
-import { createNFakeProducts } from "../models/mocks/index.js";
+import { createFakeProducts } from "../models/mocks/index.js";
 
 export const productController = {
   getData: async (req, res) => {
     try {
-      let products = await createNFakeProducts(5);
+      let products = await createFakeProducts(5);
       if (products.length > 0) {
         res.render("pages/products", {
           products: products,
@@ -16,7 +16,7 @@ export const productController = {
         });
       }
     } catch (e) {
-      res.status(500).send({ error });
+      console.log(e);
     }
   },
 };
