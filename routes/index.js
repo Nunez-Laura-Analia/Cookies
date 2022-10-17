@@ -1,5 +1,5 @@
-import homeRouter from "./homeRouter.js";
-import loginRouter from "./loginRouter.js";
-import productRouter from "./productRouter.js";
+import home from "./home.js";
+import login from "./login.js";
+import product from "./product.js";
 
-export { homeRouter, productRouter, loginRouter };
+export { home, product, login };

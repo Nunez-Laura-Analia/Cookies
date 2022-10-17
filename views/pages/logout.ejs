@@ -8,34 +8,22 @@
   <title>Aplication</title>
 </head>
 
-<body onload="redirect()" class="d-flex flex-column min-vh-100">
+<body>
   <header>
     <nav>
       <%- include('../partials/navbar')%>
     </nav>
   </header>
-
-  <div>
-    <span>
-      Redirecting <span id="time">2</span> seconds
-    </span>
-  </div>
+  
   <footer>
     <%- include('../partials/footer')%>
   </footer>
-  <script>
-    function redirect() {
-      setInterval(() => {
-        let a = parseInt(document.getElementById("time").innerText)
-        if (a > 0) {
-          a -= 1
-          document.getElementById("time").innerText = a
-        } else {
-          clearInterval()
-          location.href = "/login"
-        }
-      }, 1000)
-    }
+
+  <script type="text/javascript">
+    setTimeout(function () {
+      document.location.href = "/login";
+    }, 2000);
   </script>
+
 </body>
 </html>

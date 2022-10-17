@@ -1,18 +1,21 @@
 import express from "express";
 import { createServer } from "http";
-import { Server } from "socket.io";
 import session from "express-session";
-import { homeRouter, productRouter, loginRouter } from "./routes/index.js";
-import { socketController } from "./src/utils/socketController.js";
 import MongoStore from "connect-mongo";
-
 const app = express();
-const PORT = process.env.port || 8080;
+
+import { home, product, login } from "./routes/index.js";
+import { socketController } from "./src/utils/socketController.js";
+
+//IMPLEMENTACION DE IO
+import { Server } from "socket.io";
 const httpServer = createServer(app);
 const io = new Server(httpServer, {});
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 socketController(io);
 
+//SERVER
+const PORT = process.env.port || 8080;
 httpServer.listen(process.env.PORT || PORT, () =>
   console.log("Servidor Funcionando en Puerto: " + PORT)
 );
@@ -22,13 +25,16 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-app.use(express.static(__dirname + "/public"));
 
+
+// EJS CONFIG
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+// MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/public"));
 app.use(
   session({
     store: MongoStore.create({
@@ -36,13 +42,14 @@ app.use(
         "",
       mongoOptions: advancedOptions,
     }),
-    secret: "secreto",
+    secret: "A secret",
     cookie: { maxAge: 600000 },
     resave: false,
     saveUninitialized: false,
   })
 );
 
+// ROUTERS
 app.use((req, res, next) => {
   req.session.touch();
   next();
@@ -50,9 +57,9 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send("Welcome");
 });
-app.use("/api/products-test", productRouter);
-app.use("/login", loginRouter);
-app.use("/home", homeRouter);
+app.use("/api/products", product);
+app.use("/login", login);
+app.use("/home", home);
 app.get("/logout", (req, res) => {
   let username = req.session.username;
   req.session.destroy((err) => {

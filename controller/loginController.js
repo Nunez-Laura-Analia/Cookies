@@ -3,7 +3,7 @@ export const loginController = {
     if (req.session.username != undefined) {
       return next();
     }
-    return res.status(401).render("pages/errorLogin");
+    return res.status(401).send({ status: "Get page Log In error", body: error });
   },
 
   get: (req, res) => {

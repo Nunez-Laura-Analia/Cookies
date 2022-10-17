@@ -1,4 +1,4 @@
-import { createFakeProducts } from "../models/mocks/index.js";
+import { createFakeProducts } from "../models/mocks/productGenerator.js";
 
 export const productController = {
   getData: async (req, res) => {
