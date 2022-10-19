@@ -39,7 +39,7 @@ app.use(
   session({
     store: MongoStore.create({
       mongoUrl:
-        "",
+        "mongodb+srv://LauraAnaliaNunez:Lau56542810.@cluster0.gaaiwmb.mongodb.net/test",
       mongoOptions: advancedOptions,
     }),
     secret: "A secret",
