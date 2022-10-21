@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,8 +7,7 @@
   <link rel="stylesheet" href="./styles.css" />
   <title>Aplication</title>
 </head>
-
-<body>
+<body class="d-flex flex-column min-vh-100 ">
   <header>
     <nav>
       <%- include('../partials/navbar')%>
@@ -15,27 +15,31 @@
   </header>
   
   <main>
-    <div>
-      <h1>Login</h1>
-      <h3 id="div-compres"></h3>
-      <form method="post">
+    <div >
+      <h1>REGISTRARSE</h1>
+      <form action="" method="post">
         <div id="login-div">
-          <input type="text" id="username" name="username" placeholder="Username" />
+          <input type="text" id="username" name="username" value="" placeholder="Username" />
+          <input type="password" id="password" name="password" value="" placeholder="Password" autocomplete="off" />
         </div>
         <div>
-          <button type="submit" id="login-btn">
-            Login
+          <button>
+            Registrarse
           </button>
         </div>
       </form>
-    </div>    
+      <div>
+        <button onclick="location.href='/login'">
+          Volver a Login
+        </button>
+      </div>
+    </div>
   </main>
 
-  <footer>
+  <footer class="mt-auto footer">
     <%- include('../partials/footer')%>
   </footer>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="/login.js"></script>
 </body>
 </html>

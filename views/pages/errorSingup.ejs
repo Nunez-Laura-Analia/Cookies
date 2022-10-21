@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Aplication</title>
+</head>
+<body onload="redirect()">
+  <header>
+    <nav>
+      <%- include('../partials/navbar')%>
+    </nav>
+  </header>
+  
+  <main>
+    <div>
+      <div>
+        <p>ERROR</p>
+        <p>Redirigiendo en <span id="time">3</span> segundos</p>
+      </div>
+      <div>
+        <a href="/signup">
+          <button class="btn btn-warning mt-5">Volver a Sign Up</button>
+        </a>
+      </div>
+    </div>    
+  </main>
+
+  <footer>
+    <%- include('../partials/footer')%>
+  </footer>
+
+  <script>
+    function redirect() {
+      setInterval(() => {
+        let a = parseInt(document.getElementById("time").innerText)
+        if (a > 0) {
+          a -= 1
+          document.getElementById("time").innerText = a
+        } else {
+          clearInterval()
+          location.href = "/signup"
+        }
+      }, 1000)
+    }
+  </script>
+</body>
+</html>

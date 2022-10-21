@@ -1,5 +1,14 @@
-import home from "./home.js";
-import login from "./login.js";
-import product from "./product.js";
+import homeRouter from "./homeRouter.js";
+import loginRouter from "./loginRouter.js";
+import signupRouter from "./signupRouter.js";
+import productRouter from "./productRouter.js";
+import logoutRouter from "./logoutRouter.js";
 
-export { home, product, login };
+export {
+  homeRouter,
+  productRouter,
+  loginRouter,
+  signupRouter,
+  apiRandomsRouter,
+  logoutRouter
+};
