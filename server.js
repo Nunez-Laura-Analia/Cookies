@@ -10,14 +10,14 @@ import { home, product, login, signup, logout } from "./routes/index.js";
 //VARIABLES DE ENTORNO
 import { PORT, MONGOPSW } from "./config.js";
 
-//Login
+//LOGIN 
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import redis from "redis";
 import connectRedis from "connect-redis";
 import mongoose from "mongoose";
 import Usuarios from "./models/usuarioSchema.js";
-import { isValidPassword, createHash } from "./src/utils/passwordsFunctions.js";
+import { isValidPassword, createHash } from "./src/utils/passwords.js";
 
 //SOCKETS
 const app = express();
@@ -43,7 +43,6 @@ passport.use(
       if (!user) {
         console.log("User not found with username " + username);
         return done(null, false);
-        //null significa sin error, y false parametro a enviar
       }
       if (!isValidPassword(user, password)) {
         console.log("Invalid Password");
@@ -105,7 +104,7 @@ app.use(
     cookie: {
       httpOnly: false,
       secure: false,
-      maxAge: 86400000, // 1 dia
+      maxAge: 86400000,
     },
     rolling: true,
     resave: true,

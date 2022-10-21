@@ -1,9 +1,14 @@
 import { Router } from "express";
-const home = Router();
-import { loginController } from "../controller/loginController.js";
+const homeRouter = Router();
 
-home.get("/", loginController.auth, (req, res, next) => {
-  res.render("pages/home", { name: req.session.username });
+homeRouter.get("/", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.render("pages/home", {
+      name: req.session.username,
+    });
+  } else {
+    res.redirect("/login/faillogin");
+  }
 });
 
-export default home;
+export default homeRouter;

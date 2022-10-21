@@ -1,7 +1,8 @@
 import { Router } from "express";
-const logoutRouter = Router();
 
-logoutRouter.get("/", (req, res) => {
+const logout = Router();
+
+logout.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     const name = req.session.username;
     req.logout((error) => {
@@ -15,4 +16,4 @@ logoutRouter.get("/", (req, res) => {
   }
 });
 
-export default logoutRouter;
+export default logout;
