@@ -3,5 +3,5 @@ import login from "./login.js";
 import signup from "./signup.js";
 import product from "./product.js";
 import logout from "./logout.js";
-
-export { home, product, login, signup, logout };
+import apiRandom from "./apiRandom.js";
+export { home, product, login, signup, logout, apiRandom };

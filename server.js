@@ -5,12 +5,19 @@ import express from "express";
 import session from "express-session";
 import { Server } from "socket.io";
 import { socketController } from "./src/utils/socketController.js";
-import { home, product, login, signup, logout } from "./routes/index.js";
+import {
+  home,
+  product,
+  login,
+  signup,
+  logout,
+  apiRandom,
+} from "./routes/index.js";
 
 //VARIABLES DE ENTORNO
 import { PORT, MONGOPSW } from "./config.js";
 
-//LOGIN 
+//LOGIN
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import redis from "redis";
@@ -134,6 +141,15 @@ app.use("/login", login);
 app.use("/signup", signup);
 app.use("/home", home);
 app.use("/logout", logout);
+app.use("/api/random", apiRandom);
+
+function checkAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
